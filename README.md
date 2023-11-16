@@ -1,6 +1,7 @@
 # Photo Mapper
 
 Welcome to the Photo Mapper Flutter project! This app is designed to make photo sharing and mapping a seamless experience. 
+
 Upload your photos, associate them with locations, and explore nearby places effortlessly.
 
 ## Features
