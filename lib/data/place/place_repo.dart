@@ -15,12 +15,12 @@ class PlaceRepoImpl extends PlaceRepo {
   @override
   Future<(List<PlaceEntity>, String error)> getPlaces({int? offset}) async {
     try {
-      final rawPlaces = await client.getNearbyPlaces();
+      final rawPlaces = await client.getPlaces();
       final decodedPlaces = jsonDecode(rawPlaces.toString()) as List;
       mapper(e) => PlaceResponseMapper.fromMap(e);
       final places = decodedPlaces.map(mapper).toList();
       // return (Places.toEntities, '');
-      return (<PlaceEntity>[], '');
+      return (places, '');
     } catch (e) {
       return (<PlaceEntity>[], e.toString());
     }

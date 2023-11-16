@@ -24,23 +24,19 @@ class PhotoService {
     return image;
   }
 
-  Future<List<XFile>> openPhotos() async {
+  Future<XFile?> getPhoto() async {
     //ask permission
     var status = await Permission.photos.status;
     if (status.isPermanentlyDenied) {
       await openAppSettings();
       var status = await Permission.photos.status;
-      if (!status.isGranted) return [];
+      if (!status.isGranted) return null;
     } else {
       var status = await Permission.photos.request();
-      if (!status.isGranted) return [];
+      if (!status.isGranted) return null;
     }
 
-    //granted access
-    final ImagePicker picker = ImagePicker();
     // Pick an image
-    final List<XFile> images = await picker.pickMultiImage();
-    log("images: $images");
-    return images;
+    return ImagePicker().pickImage(source: ImageSource.gallery);
   }
 }

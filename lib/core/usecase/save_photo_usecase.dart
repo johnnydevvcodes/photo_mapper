@@ -2,13 +2,13 @@ import 'package:photo_mapper/core/core.dart';
 import 'package:photo_mapper/core/usecase/use_case.dart';
 import 'package:photo_mapper/data/data.dart';
 
-class UploadPhotoUsecase extends BaseUseCase<(PhotoEntity?, String), int> {
+class SavePhotoUsecase extends BaseUseCase<bool, PhotoEntity> {
   final PhotoRepo repo;
 
-  UploadPhotoUsecase(this.repo);
+  SavePhotoUsecase(this.repo);
 
   @override
-  Future<(PhotoEntity?, String)> call({int? params}) {
-    return repo.uploadPhoto();
+  Future<bool> call({PhotoEntity? params}) {
+    return repo.savePhoto(params!);
   }
 }

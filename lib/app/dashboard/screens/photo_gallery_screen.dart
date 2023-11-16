@@ -14,10 +14,13 @@ class PhotoGalleryScreen extends StatefulWidget {
 }
 
 class _PhotoGalleryScreenState extends State<PhotoGalleryScreen> {
+  late final PhotoGalleryCubit cubit;
+  NavigatorState get navigator => Navigator.of(context);
   @override
   void initState() {
     super.initState();
-    context.read<PhotoGalleryCubit>().initialize();
+    cubit = context.read<PhotoGalleryCubit>();
+    cubit.initialize();
   }
 
   @override
@@ -25,19 +28,23 @@ class _PhotoGalleryScreenState extends State<PhotoGalleryScreen> {
     return Scaffold(
       appBar: AppBar(title: const Text('Photo Mapper')),
       body: BlocConsumer<PhotoGalleryCubit, PhotoGalleryState>(
-        listener: (BuildContext context, PhotoGalleryState state) {
+        listener: (BuildContext context, PhotoGalleryState state) async {
           if (state is UploadErrorState) {}
+          if (state is SavedPhotoState) {
+            await cubit.initialize();
+          }
           if (state is UploadedPhotoState) {
-            Navigator.push(
-              context,
+            navigator.push(
               MaterialPageRoute(
                 builder: (context) => PhotoDetailScreen(state.photo),
               ),
             );
           }
         },
-        buildWhen: (previous, state) {
-          return state is! UploadErrorState || state is! UploadedPhotoState;
+        buildWhen: (previous, current) {
+          return current is! UploadErrorState &&
+              current is! SavedPhotoState &&
+              current is! UploadedPhotoState;
         },
         builder: (context, state) {
           switch (state) {

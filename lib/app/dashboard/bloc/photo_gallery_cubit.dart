@@ -6,10 +6,12 @@ class PhotoGalleryCubit extends Cubit<PhotoGalleryState> {
   PhotoGalleryCubit(
     this._getPhotosUsecase,
     this._uploadPhotoUsecase,
+    this._savePhotoUsecase,
   ) : super(InitialState());
 
   final GetPhotosUsecase _getPhotosUsecase;
   final UploadPhotoUsecase _uploadPhotoUsecase;
+  final SavePhotoUsecase _savePhotoUsecase;
 
   Future initialize() async {
     emit(LoadingState());
@@ -22,11 +24,17 @@ class PhotoGalleryCubit extends Cubit<PhotoGalleryState> {
   }
 
   Future uploadPhoto() async {
-    emit(LoadingState());
     final record = await _uploadPhotoUsecase.call();
     final error = record.$2;
-    final photo = record.$1;
     if (error.isNotEmpty) return emit(UploadErrorState(record.$2));
-    emit(UploadedPhotoState(photo));
+
+    final photo = record.$1;
+    emit(UploadedPhotoState(photo!));
+  }
+
+  Future savePhoto(PhotoEntity photo) async {
+    emit(LoadingState());
+    final isSaved = await _savePhotoUsecase.call(params: photo);
+    if (isSaved) emit(SavedPhotoState());
   }
 }

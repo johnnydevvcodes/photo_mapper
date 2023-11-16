@@ -8,7 +8,7 @@ class PhotoResponse extends PhotoEntity with PhotoResponseMappable {
   PhotoResponse({
     required super.id,
     required super.name,
-    required super.imageUrl,
+    required super.imagePath,
     required super.places,
   });
 }

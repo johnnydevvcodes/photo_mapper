@@ -1,14 +1,14 @@
-import 'package:photo_mapper/core/core.dart';
+import 'package:flutter/services.dart';
 
 abstract class PlaceService {
-  Future<(List<PlaceEntity>, String error)> getNearbyPlaces();
+  Future<String> getPlaces();
 }
 
 class PlaceServiceImpl extends PlaceService {
-
   @override
-  Future<(List<PlaceEntity>, String error)> getNearbyPlaces() async {
+  Future<String> getPlaces() async {
     //parse a mock data
-    return Future.value((<PlaceEntity>[], ''));
+    final rawPlaces = await rootBundle.loadString('assets/places.json');
+    return rawPlaces;
   }
 }

@@ -19,9 +19,9 @@ class PhotoDao {
     return controller.stream;
   }
 
-  Future save(Map<String, dynamic> data) async {
+  Future<bool> save(Map<String, dynamic> data) async {
     var db = await _database;
-    var value = await _dbStore.record(data['uid']).put(db, data, merge: true);
+    var value = await _dbStore.record(data['id']).put(db, data, merge: true);
     return value != null;
   }
 

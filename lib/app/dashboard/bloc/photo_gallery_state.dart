@@ -22,6 +22,8 @@ class UploadedPhotoState extends PhotoGalleryState {
   final PhotoEntity photo;
 }
 
+class SavedPhotoState extends PhotoGalleryState {}
+
 class EmptyState extends PhotoGalleryState {}
 
 class InitialState extends PhotoGalleryState {}

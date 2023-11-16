@@ -28,18 +28,18 @@ class PhotoResponseMapper extends ClassMapperBase<PhotoResponse> {
   static const Field<PhotoResponse, String> _f$id = Field('id', _$id);
   static String _$name(PhotoResponse v) => v.name;
   static const Field<PhotoResponse, String> _f$name = Field('name', _$name);
-  static String _$imageUrl(PhotoResponse v) => v.imageUrl;
-  static const Field<PhotoResponse, String> _f$imageUrl =
-      Field('imageUrl', _$imageUrl);
-  static List<PlaceEntity> _$places(PhotoResponse v) => v.places;
-  static const Field<PhotoResponse, List<PlaceEntity>> _f$places =
+  static String _$imagePath(PhotoResponse v) => v.imagePath;
+  static const Field<PhotoResponse, String> _f$imagePath =
+      Field('imagePath', _$imagePath);
+  static List<String> _$places(PhotoResponse v) => v.places;
+  static const Field<PhotoResponse, List<String>> _f$places =
       Field('places', _$places);
 
   @override
   final Map<Symbol, Field<PhotoResponse, dynamic>> fields = const {
     #id: _f$id,
     #name: _f$name,
-    #imageUrl: _f$imageUrl,
+    #imagePath: _f$imagePath,
     #places: _f$places,
   };
 
@@ -47,7 +47,7 @@ class PhotoResponseMapper extends ClassMapperBase<PhotoResponse> {
     return PhotoResponse(
         id: data.dec(_f$id),
         name: data.dec(_f$name),
-        imageUrl: data.dec(_f$imageUrl),
+        imagePath: data.dec(_f$imagePath),
         places: data.dec(_f$places));
   }
 
@@ -101,10 +101,8 @@ extension PhotoResponseValueCopy<$R, $Out>
 
 abstract class PhotoResponseCopyWith<$R, $In extends PhotoResponse, $Out>
     implements ClassCopyWith<$R, $In, $Out> {
-  ListCopyWith<$R, PlaceEntity, ObjectCopyWith<$R, PlaceEntity, PlaceEntity>>
-      get places;
-  $R call(
-      {String? id, String? name, String? imageUrl, List<PlaceEntity>? places});
+  ListCopyWith<$R, String, ObjectCopyWith<$R, String, String>> get places;
+  $R call({String? id, String? name, String? imagePath, List<String>? places});
   PhotoResponseCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
 
@@ -117,26 +115,26 @@ class _PhotoResponseCopyWithImpl<$R, $Out>
   late final ClassMapperBase<PhotoResponse> $mapper =
       PhotoResponseMapper.ensureInitialized();
   @override
-  ListCopyWith<$R, PlaceEntity, ObjectCopyWith<$R, PlaceEntity, PlaceEntity>>
-      get places => ListCopyWith($value.places,
-          (v, t) => ObjectCopyWith(v, $identity, t), (v) => call(places: v));
+  ListCopyWith<$R, String, ObjectCopyWith<$R, String, String>> get places =>
+      ListCopyWith($value.places, (v, t) => ObjectCopyWith(v, $identity, t),
+          (v) => call(places: v));
   @override
   $R call(
           {String? id,
           String? name,
-          String? imageUrl,
-          List<PlaceEntity>? places}) =>
+          String? imagePath,
+          List<String>? places}) =>
       $apply(FieldCopyWithData({
         if (id != null) #id: id,
         if (name != null) #name: name,
-        if (imageUrl != null) #imageUrl: imageUrl,
+        if (imagePath != null) #imagePath: imagePath,
         if (places != null) #places: places
       }));
   @override
   PhotoResponse $make(CopyWithData data) => PhotoResponse(
       id: data.get(#id, or: $value.id),
       name: data.get(#name, or: $value.name),
-      imageUrl: data.get(#imageUrl, or: $value.imageUrl),
+      imagePath: data.get(#imagePath, or: $value.imagePath),
       places: data.get(#places, or: $value.places));
 
   @override

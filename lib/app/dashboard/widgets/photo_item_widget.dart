@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -27,33 +29,46 @@ class _PhotoItemWidgetState extends State<PhotoItemWidget> {
           ),
         );
       },
-      child: SizedBox(
-        height: 90,
-        child: Card(
-          elevation: 4,
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-          margin: const EdgeInsets.symmetric(vertical: 4, horizontal: 12),
-          child: Row(
-            mainAxisSize: MainAxisSize.max,
+      child: Card(
+        elevation: 4,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Container(
+          height: 300,
+          padding: const EdgeInsets.fromLTRB(24.0, 24, 24, 12),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              const Gap(8),
-              Text(widget.photo.id),
-              const Gap(8),
-              SizedBox(
-                width: 68,
-                child: Image.network(widget.photo.imageUrl),
-              ),
-              const Gap(8),
               Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(widget.photo.name, style: textTheme.bodyLarge),
-                  ],
+                child: Image.file(
+                  fit: BoxFit.cover,
+                  File.fromUri(Uri.parse(widget.photo.imagePath)),
                 ),
               ),
+              const Gap(12),
+              Text(
+                widget.photo.name,
+                overflow: TextOverflow.ellipsis,
+                style: textTheme.titleLarge!.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const Gap(8),
+              if (widget.photo.places.isNotEmpty)
+                Row(
+                  children: [
+                    const Icon(Icons.location_on_outlined),
+                    Expanded(
+                      child: Wrap(
+                        crossAxisAlignment: WrapCrossAlignment.start,
+                        children:
+                            widget.photo.places.map((e) => Text('$e,')).toList(),
+                      ),
+                    ),
+                  ],
+                ),
             ],
           ),
         ),
