@@ -30,7 +30,7 @@ To get started with the Photo Mapper app, follow these steps:
 
 1. Clone the repository to your local machine.
    ```
-   git clone https://github.com/your-username/photo-mapper.git
+   git clone https://github.com/johnsargado/photo_mapper.git
    ```
 
 2. Navigate to the project directory.
