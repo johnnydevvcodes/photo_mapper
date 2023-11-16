@@ -1,20 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:photo_mapper/app/dashboard/bloc/photo_gallery_cubit.dart';
+import 'package:photo_mapper/app/dashboard/screens/photo_gallery_screen.dart';
+import 'package:photo_mapper/core/app_module.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 void main() {
-  runApp(const MainApp());
+  runApp(
+    ModularApp(
+      module: AppModule(),
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider(create: (_) => Modular.get<PhotoGalleryCubit>())
+        ],
+        child: const PhotoMapper(),
+      ),
+    ),
+  );
 }
 
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
-
+class PhotoMapper extends StatelessWidget {
+  const PhotoMapper({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
-      ),
+    return MaterialApp(
+      title: 'Photo Mapper',
+      theme: ThemeData.dark(),
+      home: const PhotoGalleryScreen(),
     );
   }
 }
