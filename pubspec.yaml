@@ -1,19 +1,38 @@
 name: photo_mapper
 description: A new Flutter project.
-publish_to: 'none'
+publish_to: "none"
 version: 0.1.0
 
 environment:
-  sdk: '>=3.1.5 <4.0.0'
+  sdk: ">=3.0.0 <4.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
+  build_runner:
+  flutter_bloc: ^8.0.1
+  gap: ^3.0.1
+  flutter_modular: 6.1.0
+  dart_mappable: ^3.2.0
+  dio: ^4.0.6
+  dart_mappable_builder:
+  native_exif: ^0.5.0
+  path_provider: ^2.0.11
+  sembast: ^3.4.4
+  permission_handler: ^10.0.2
+  extended_image: ^8.1.0
+  image_picker: ^0.8.5+3
+  geocoding: ^2.1.1
+  uuid: ^3.0.4
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^2.0.0
+  bloc_test: ^9.1.0
+  mocktail: ^1.0.1
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/places.json
