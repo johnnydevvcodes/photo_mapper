@@ -60,20 +60,15 @@ To get started with the Photo Mapper app, follow these steps:
 
 ## Project Structure
 
-- **`lib/`**: Contains the main source code for the Flutter app.
-- **`assets/`**: Store static assets such as images.
+- **`lib/`**: Contains the main source code for the Photo Mapper app.
+- **`assets/`**: Store static assets for mock data or files.
 - **`pubspec.yaml`**: Define dependencies and project configuration.
 
-## Contributing
-
-We welcome contributions! If you have suggestions, bug reports, or want to contribute code, please submit an issue or a pull request. Make sure to follow the project's coding conventions.
 
 ## License
 
 This project is licensed under the [MIT License](LICENSE), so feel free to use, modify, and distribute the code as you see fit.
 
-## Support
 
-For further assistance or to report issues, please reach out to our support team at support@photomapperapp.com.
 
 Happy mapping with Photo Mapper! 🌍📸
